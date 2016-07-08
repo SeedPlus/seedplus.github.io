@@ -23,7 +23,7 @@ body {
   flex-direction: column;
 }
 
-#footer {
+footer {
   width: 100%;
   background-color: #373535;
   font-family: 400;
@@ -31,7 +31,7 @@ body {
   text-align: center;
 }
 
-#footer > p {
+footer > p {
   margin: 0 auto;
   color: white;
 }

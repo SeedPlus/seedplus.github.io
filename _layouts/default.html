@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  {% include head.html %}
+
+  <body>
+    <div id='content'>
+      <ul id='menu'>
+        <li>
+          {% include wordmark-seedplus.svg %}
+          <svg id='hamburger' viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" onClick="document.querySelector('#menu').classList.toggle('expanded')">
+            <rect stroke="none" fill-rule="evenodd" x="0" y="0" width="16" height="4"></rect>
+            <rect stroke="none" fill-rule="evenodd" x="0" y="12" width="16" height="4"></rect>
+            <rect stroke="none" fill-rule="evenodd" x="0" y="6" width="16" height="4"></rect>
+          </svg>
+        {% for page in site.pages %} {% if page.title %}
+          <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+        {% endif %} {% endfor %}
+        <!-- li>About.</li>
+        <li>Team.</li>
+        <li>Contact.</li -->
+      </ul>
+
+      {{ content }}
+
+      <div class='contact-footer'>
+        <h2>Get in touch.</h2>
+        <h3><a href='mailto:hello@seedplus.com'>hello@seedplus.com</a></h3>
+        {% include icon-twitter.svg %}
+        {% include icon-linkedin.svg %}
+      </div>
+    </div>
+    <footer>
+      <p>&copy; SeedPlus. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
