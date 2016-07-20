@@ -188,7 +188,7 @@ div.page-header > h1 {
 }
 
 div.info-group {
-  margin: 30px -1rem;
+  margin: 1rem -1rem 0 -1rem;
 
   display: flex;
   flex-direction: row;
@@ -229,6 +229,10 @@ div.info-group:nth-of-type(2n) > div.info-item {
     flex-direction: column;
   }
 
+  div.info-group + div.info-group {
+    margin-top: 0;
+  }
+
   div.bio-portrait {
     flex-basis: 500px;
     flex-basis: 100vw;
@@ -265,6 +269,7 @@ h4 ~ h5 {
 p {
   color: black;
   line-height: 1.8rem;
+  margin-bottom: 0;
 }
 
 .contact-footer {
@@ -272,7 +277,7 @@ p {
   flex-flow: row wrap;
   align-items: flex-start;
   
-  margin: 0 -0.5rem 2rem -0.5rem;
+  margin: 2rem -0.5rem 1rem -0.5rem;
 }
 
 .contact-footer > * {
