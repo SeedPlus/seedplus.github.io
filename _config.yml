@@ -9,14 +9,9 @@
 title: SeedPlus
 email: hello@seedplus.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  A new kind of seed venture firm: A one-of-a-kind network, bigger checks and with founders every day.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://www.seedplus.com" # the base hostname & protocol for your site
-twitter_username: seedplusvc
 
 # Build settings
-sass:
-  sass_dir: _sass
 markdown: kramdown
