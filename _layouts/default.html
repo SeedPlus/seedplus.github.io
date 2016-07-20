@@ -7,18 +7,20 @@
     <div id='content'>
       <ul id='menu'>
         <li>
-          {% include wordmark-seedplus.svg %}
-          <svg id='hamburger' viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" onClick="document.querySelector('#menu').classList.toggle('expanded')">
-            <rect stroke="none" fill-rule="evenodd" x="0" y="0" width="16" height="4"></rect>
-            <rect stroke="none" fill-rule="evenodd" x="0" y="12" width="16" height="4"></rect>
-            <rect stroke="none" fill-rule="evenodd" x="0" y="6" width="16" height="4"></rect>
-          </svg>
+          <a href='/'>{% include wordmark-seedplus.svg %}</a>
+          <span id='hamburger' onClick="document.querySelector('#menu').classList.toggle('expanded')"><!-- needed to add equivalent inline bottom padding (one descender) -->
+            <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <rect stroke="none" fill-rule="evenodd" x="0" y="0" width="16" height="4"></rect>
+              <rect stroke="none" fill-rule="evenodd" x="0" y="12" width="16" height="4"></rect>
+              <rect stroke="none" fill-rule="evenodd" x="0" y="6" width="16" height="4"></rect>
+            </svg>
+          </span>
+        {% assign current_url = page.url %}
         {% for page in site.pages %} {% if page.title %}
-          <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+          <li><a href="{{ page.url | prepend: site.baseurl }}" {% if page.url == current_url %} class='current' {% endif %}>
+            {{ page.title }}
+          </a></li>
         {% endif %} {% endfor %}
-        <!-- li>About.</li>
-        <li>Team.</li>
-        <li>Contact.</li -->
       </ul>
 
       {{ content }}

@@ -1,8 +1,22 @@
+---
+---
+
+$seedplus-gray: #373535;
+$jungle-blue: #05568A;
+
+$vertical-page-margin: 2rem;
+$horizontal-page-margin: 3rem;
+
+@mixin border-underline($color) {
+  border-bottom: 0.4rem solid $color;
+  transition: border-bottom .1s;
+}
+
 html {
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-size: 14px;
-  color: #373535;
+  color: $seedplus-gray;
 }
 
 body {
@@ -13,11 +27,19 @@ body {
   margin: 0;
 }
 
+a, a:hover, a:visited, a:active {
+  color: $seedplus-gray;
+}
+
+h3 > a {
+  text-decoration: none;
+}
+
 #content {
   max-width: 1000px;
   height: 100%;
   margin: 0 auto;
-  padding: 2rem 3rem;
+  padding: $vertical-page-margin $horizontal-page-margin;
 
   display: flex;
   flex-direction: column;
@@ -25,7 +47,7 @@ body {
 
 footer {
   width: 100%;
-  background-color: #373535;
+  background-color: $seedplus-gray;
   font-family: 400;
   padding: 1rem 0;
   text-align: center;
@@ -70,8 +92,25 @@ footer > p {
   flex: 3 0 auto;
 }
 
+#menu a {
+  text-decoration: none;
+  @include border-underline(transparent);
+}
+
+#menu a.current {
+  @include border-underline($jungle-blue);
+}
+
+#menu a:hover {
+  @include border-underline($seedplus-gray);
+}
+
+$logo-height: 0.75 * 3rem;
+$logo-hamburger-height-difference: 1rem;
+$logo-bottom-padding: 1.5rem;
+
 #logo {
-  height: calc(0.75*3rem);
+  height: $logo-height;
 }
 
 @media (max-width: 768px) {
@@ -80,20 +119,22 @@ footer > p {
   }
 
   #menu.expanded > li:first-child {
-    margin-bottom: 2rem;
+    margin-bottom: $logo-bottom-padding;
   }
 
   #menu #hamburger {
-    display: block;
-    height: calc(0.75*3rem - 1rem);
-    fill: #373535;
-    padding: 3rem 3rem 2rem 3rem;
-    margin: -3rem -3rem -2rem 3rem;
+    & svg {
+      height: $logo-height - $logo-hamburger-height-difference;
+    }
+    display: inline;
+    fill: $seedplus-gray;
+    padding: ($vertical-page-margin + $logo-hamburger-height-difference) $horizontal-page-margin ($logo-bottom-padding + 0.4rem) $horizontal-page-margin;
+    margin: (-$vertical-page-margin - $logo-hamburger-height-difference) (-$horizontal-page-margin) (-$logo-bottom-padding) 3rem;
   }
 
   #menu.expanded #hamburger {
     fill: white;
-    background-color: #373535;
+    background-color: $seedplus-gray;
   }
 
   #menu.expanded {
@@ -102,9 +143,16 @@ footer > p {
   }
 
   #menu.expanded li:not(:first-child) {
-    color: white;
-    background-color: #373535;
+    &, & a, & a:hover, & a:visited, & a:active
+    {
+      color: white;
+    }
 
+    & a:hover {
+      @include border-underline(white);
+    }
+
+    background-color: $seedplus-gray;
     text-align: left;
     padding: 0.5rem calc(3rem + 1rem);
     margin: 0 -3rem;
@@ -132,11 +180,11 @@ div.page-header > h1 {
   font-weight: 700;   
   text-transform: uppercase;
   color: white;
-  background-color: #05568A;
+  background-color: $jungle-blue;
   line-height: 0.96em;
   white-space: nowrap;
   /* TODO: this should be box-decoration-break once support is common enough */
-  box-shadow: 1rem 0 0 #05568A, -1rem 0 0 #05568A;
+  box-shadow: 1rem 0 0 $jungle-blue, -1rem 0 0 $jungle-blue;
 }
 
 div.info-group {
@@ -197,8 +245,8 @@ h4 {
   font-size: 1.8rem;
   font-weight: 900;
   /* TODO: there might be a better way of doing this */
-  /* border-left: 0.5rem solid #05568A; */
-  box-shadow: inset 0 0.2em white, inset 0.5rem 0 0 #05568A;
+  /* border-left: 0.5rem solid $jungle-blue; */
+  box-shadow: inset 0 0.2em white, inset 0.5rem 0 0 $jungle-blue;
 }
 
 h5 {
@@ -206,12 +254,12 @@ h5 {
   padding-left: 1.5rem;
   font-size: 1rem;
   font-weight: 500;
-  box-shadow: inset 0 0.2em white, inset 0.5rem 0 0 #05568A;
+  box-shadow: inset 0 0.2em white, inset 0.5rem 0 0 $jungle-blue;
 }
 
 h4 ~ h5 {
   padding-top: 0.5rem;
-  box-shadow: inset 0.5rem 0 0 #05568A;
+  box-shadow: inset 0.5rem 0 0 $jungle-blue;
 }
 
 p {
@@ -243,7 +291,7 @@ p {
 }
 
 .contact-footer > svg, .bio-contact > svg {
-  background-color: #05568A;
+  background-color: $jungle-blue;
   fill: white;
   height: 1.8rem;
   padding: 0.5rem;
@@ -261,17 +309,9 @@ h2 {
   font-weight: 700;   
   text-transform: uppercase;
   color: white;
-  background-color: #05568A;
+  background-color: $jungle-blue;
   margin: 0 0.7rem;
   padding: 0.4rem 0;
   /* TODO: this should be box-decoration-break once support is common enough */
-  box-shadow: 0.7rem 0 0 #05568A, -0.7rem 0 0 #05568A;
-}
-
-a, a:hover, a:visited, a:active {
-  color: #373535;
-}
-
-h3 > a {
-  text-decoration: none;
+  box-shadow: 0.7rem 0 0 $jungle-blue, -0.7rem 0 0 $jungle-blue;
 }
