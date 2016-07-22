@@ -25,11 +25,12 @@
 
       {{ content }}
 
-      <div class='contact-footer'>
+      <div class='contact contact-footer'>
         <h2>Get in touch.</h2>
         <h3><a href='mailto:hello@seedplus.com'>hello@seedplus.com</a></h3>
-        {% include icon-twitter.svg %}
-        {% include icon-linkedin.svg %}
+        <div><!-- no row-breaking between the icons -->
+          {% include icon-twitter.svg %}{% include icon-linkedin.svg %}
+        </div>
       </div>
     </div>
     <footer>
