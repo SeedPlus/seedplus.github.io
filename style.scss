@@ -62,12 +62,18 @@ footer {
   font-family: 400;
   padding: 1rem 0;
   text-align: center;
+
+  & > p {
+    margin: 0 auto;
+    color: white;
+  }
+
+  & a, & a:hover, & a:visited, & a:active {
+    color: white;
+    text-decoration: underline;
+  }
 }
 
-footer > p {
-  margin: 0 auto;
-  color: white;
-}
 $logo-height: 0.75 * 3rem;
 $logo-hamburger-height-difference: 1rem;
 $logo-bottom-padding: 1.5rem;
