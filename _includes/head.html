@@ -23,6 +23,13 @@
   <meta name="msapplication-TileImage" content="images/favicons/ms-icon-144x144.png">
   <meta name="theme-color" content="#373535">
 
+  <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}" />
+  <meta property="og:title" content="{{ site.title | escape }}{% if page.title %} - {{ page.title | escape }}{% endif %}" />
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
+  <meta property="og:image" content="/images/open-graph-preview.png" />
+  <meta property="og:type" content="website" />
+  <meta property="fb:admins" content="100000901583954" />
+
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,800,900' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="{{ "/style.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
