@@ -262,9 +262,14 @@ div.info-group:nth-of-type(2n) > div.info-item {
     margin-top: 0;
   }
 
+  div.info-item {
+    flex: 1 0 auto;
+  }
+
   div.bio-portrait {
-    flex-basis: 500px;
-    flex-basis: 100vw;
+    flex: 1 0 auto;
+    height: 500px;
+    height: 100vw;
   }
 
   div.info-group:nth-of-type(2n) > div.info-item {
