@@ -145,7 +145,7 @@ $logo-bottom-padding: 1.5rem;
     display: inline;
     fill: $seedplus-gray;
     padding: ($vertical-page-margin + $logo-hamburger-height-difference) $horizontal-page-margin ($logo-bottom-padding + $underline-width) $horizontal-page-margin;
-    margin: (-$vertical-page-margin - $logo-hamburger-height-difference) (-$horizontal-page-margin) (-$logo-bottom-padding) 3rem;
+    margin: (-$vertical-page-margin - $logo-hamburger-height-difference) (-$horizontal-page-margin) (-$logo-bottom-padding) 0;
   }
 
   #menu.expanded #hamburger {
