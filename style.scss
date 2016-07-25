@@ -244,7 +244,8 @@ div.bio-contact {
   margin: 0 -0.5rem;
 }
 
-div.bio-contact > svg {
+div.bio-contact svg {
+  display: block;
   margin: 0 0.5rem;
 }
 
