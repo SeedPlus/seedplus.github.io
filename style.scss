@@ -13,12 +13,17 @@ $underline-width: 0.33rem;
   transition: border-bottom .1s;
 }
 
+* {
+  /* Safari bug workaround; flex children can shrink arbitrarily otherwise */
+  flex: 0 0 auto;
+}
+
 html {
+  height: 100%;
   font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: $seedplus-gray;
-  height: 100%;
 }
 
 body {
@@ -26,7 +31,7 @@ body {
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
@@ -42,7 +47,7 @@ h3 > a {
 #content {
   width: 100%;
   max-width: 1000px;
-  flex: 1 0 100%;
+  flex: 1 0 auto;
   box-sizing: border-box;
   padding: $vertical-page-margin $horizontal-page-margin;
 
@@ -181,13 +186,14 @@ div.page-header {
 div.page-header > h1 {
   display: inline;
   font-size: 7rem;
-  font-weight: 700;   
+  font-weight: 800;
   text-transform: uppercase;
   color: white;
   background-color: $jungle-blue;
   line-height: 0.96em;
   white-space: nowrap;
-  /* TODO: this should be box-decoration-break once support is common enough */
+  box-decoration-break: clone;
+  /* TODO: this should be only box-decoration-break once support is common enough */
   box-shadow: 1rem 0 0 $jungle-blue, -1rem 0 0 $jungle-blue;
 }
 
@@ -305,7 +311,7 @@ div.contact-map {
   display: flex;
   flex: 10 0 auto;
   flex-flow: row wrap;
-
+  align-content: flex-end;
 
   margin: 2rem -0.5rem 1rem -0.5rem;
 }
@@ -346,7 +352,7 @@ h3 {
 h2 {
   display: inline;
   font-size: 1.8rem;
-  font-weight: 700;   
+  font-weight: 800;
   text-transform: uppercase;
   color: white;
   background-color: $jungle-blue;
