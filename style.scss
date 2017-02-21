@@ -249,8 +249,8 @@ div.bio-contact svg {
   margin: 0 0.5rem;
 }
 
-div.info-group:nth-of-type(2n) > div.info-item {
-  order: -1;
+div.info-group:nth-of-type(2n) > div.bio-portrait {
+  order: 2;
 }
 
 @media (max-width: 768px) {
