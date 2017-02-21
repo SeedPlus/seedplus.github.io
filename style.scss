@@ -215,6 +215,11 @@ div.page-header > h1 {
   }
 }
 
+div.section-banner {
+  margin: 3rem 0 1rem 0;
+  flex: 1 0 auto;
+}
+
 div.info-group {
   margin: 1rem -1rem 0 -1rem;
 
@@ -224,6 +229,11 @@ div.info-group {
 
 div.info-item {
   flex: 2 2 0;
+  margin: 1rem;
+}
+
+div.info-sidebar {
+  flex: 0 0 auto;
   margin: 1rem;
 }
 
