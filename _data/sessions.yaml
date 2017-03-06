@@ -1,0 +1,6 @@
+sections:
+  - tag: 'aiml'
+    image: '/images/sessions_aiml.jpg'
+
+  - tag: 'growth'
+    image: '/images/sessions_growth.jpg'

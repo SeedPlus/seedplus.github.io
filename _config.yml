@@ -22,3 +22,7 @@ gems:
 
 whitelist:
   - jekyll-redirect-from
+
+collections:
+  sessions:
+    output: false

@@ -5,40 +5,49 @@ permalink: /sessions/
 excerpt: SeedPlus Sessions are selective and focused talks on topics founders care about.
 ---
 
-<!-- <div class='page-header'>
-  {% include wordmark-seedplussessions.svg %}
-</div> -->
+{% for section in site.data.sessions.sections %}
+<div class='js-session-section'>
+  <div class='section-banner'>
+    <img src='{{ section.image }}' width='100%' />
+  </div>
 
-<div class='section-banner'>
-  <a href='https://stripe.com/events/fireside-chat-machine-learning'><img src='/images/sessions_aiml.jpg' width='100%' /></a>
-</div>
+  {% assign sessions = site.sessions | where: 'tag', section.tag | sort: 'date' | reverse %}
+  {% for session in sessions %}
+  <div class='info-group js-session' js-session-date='{{ session.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
+    <div class='info-sidebar'>
+      <h2></h2>
+    </div>
+    <div class='info-item'>
+      <h4>{{ session.title }}: {{ session.date | date: "%A %b %d" }}</h4>
+      {{ session.output }}
+    </div>
+  </div>
+  {% endfor %}
   
-<div class='info-group'>
-  <div class='info-sidebar'>
-    <h2>Past.</h2>
-  </div>
-  <div class='info-item'>
-    <h4>Sessions x City.ai: Evening of Wednesday Mar 1</h4>
-    <p><a href='http://singapore.city.ai/'>City.ai</a>, a meeting place for local AI institutions and startups, joined us <a href='/contact'>at our office</a> for their inaugural session. Covering some of the major players in the community, expect a meaningful chat with the real practitioners.</p>
-
-    <h4>Sessions x Stripe: Mid-day Monday Feb 27</h4>
-    <p>We teamed up with <a href='https://stripe.com'>Stripe</a> for a fireside chat on <em>Building machine learning 
-based products</em> with both local luminaries and visiting experts: <a href='https://twitter.com/kelvl'>Kelvin Law</a> joins from Stripe where he builds ML-based anti-fraud systems at scale, while the early-stage angle will be covered by <a href='https://twitter.com/jinhian_lee'>Jin Hian Lee</a>, co-founder of the virtual assistant startup <a href=''>Mimetic</a> and <a href='https://twitter.com/goteamups'>Mohammed Abdoolcarim</a>, ex-Siri and co-founder of <a href='http://vahan.co/'>Vahan</a>.</p>
-  </div>
-
 </div>
+{% endfor %}
 
-<div class='section-banner'>
-  <a href='https://www.eventbrite.com/e/seedplus-sessions-growth-registration-31823629332'><img src='/images/sessions_growth.jpg' width='100%' /></a>
-</div>
+<script>
+var now = Date.now()
+var grace_period = 72*60*60*1000; // Sessions are in "upcoming" for 12h after their stated date
 
-<div class='info-group'>
-  <div class='info-sidebar'>
-    <h2>Past.</h2>
-  </div>
-  <div class='info-item'>
-    <h4>Session #1: Evening of Thursday Feb 23</h4>
-    <p><em>How to Determine your User Acquisition Strategy: A Framework-driven Approach</em> by <strong>Kiyan Foroughi</strong>. Kiyan is the founder of the growth practice <strong>Electric8</strong> and has nearly 15 years of experience across digital in North America, Europe, the Middle East and now Asia. He has acquired and retained millions of users over the course of his career having built and sold Boticca, a London-based fashion accessories marketplace, and at HappyFresh and Garena in the region.</p>
-    <p>Find Kiyan's slides on <a href='http://www.e8growth.com/seedplus'>the Electric8 website</a>.</p>
-  </div>
-</div>
+var sections = document.getElementsByClassName('js-session-section');
+for (var i = 0; i < sections.length; i++) {
+  var sessions = sections[i].getElementsByClassName('js-session');
+
+  // Upcoming (here, to make the page look more sensible (no headings) if JS is turned off)
+  if (sessions.length > 0) {
+    sessions[0].getElementsByTagName('h2')[0].innerText = 'Upcoming.'
+  }
+
+  // Past (overwrites upcoming if all in the past)
+  for (var j = 0; j < sessions.length; j++) {
+    var session = sessions[j];
+    var sessionInPast = parseInt(session.getAttribute('js-session-date')) < now - grace_period;
+    if (sessionInPast) {
+      session.getElementsByTagName('h2')[0].innerText = 'Past.';
+      break;
+    }
+  }
+}
+</script>
