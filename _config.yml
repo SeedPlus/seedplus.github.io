@@ -26,3 +26,41 @@ whitelist:
 collections:
   sessions:
     output: false
+
+# Prose (prose.io) configuration (https://github.com/prose/prose/wiki/Prose-Configuration)
+prose:
+  metadata:
+    _sessions:
+      - name: title
+        field:
+          element: text
+          label: Event title
+      - name: date
+        field:
+          element: text
+          label: Event date
+          value: CURRENT_DATETIME
+      - name: tag
+        field:
+          element: select
+          label: Section
+          options:
+            - name: 'AI/ML'
+              value: 'aiml'
+            - name: 'Growth'
+              value: 'growth'
+  siteurl: "http://www.seedplus.com"
+  ignore:
+    - /_data
+    - /_layouts
+    - /_includes
+    - /images
+    - .gitignore
+    - 01_about.html
+    - 02_team.html
+    - 03_contact.html
+    - 04_sessions.html
+    - CNAME
+    - _config.yml
+    - index.html
+    - style.scss
