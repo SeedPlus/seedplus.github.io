@@ -8,7 +8,7 @@ $jungle-blue: #05568A;
 $vertical-page-margin: 2rem;
 $horizontal-page-margin: 3rem;
 
-$underline-width: 0.33rem;
+$underline-width: 0.25rem;
 @mixin border-underline($color) {
   border-bottom: $underline-width solid $color;
   transition: border-bottom .1s;
@@ -130,11 +130,23 @@ div.info-sidebar {
   width: 12rem;
 }
 
-div.bio-portrait {
-  flex: 1 2 10rem;
+.bio-image {
+  display: block;
+
+  flex: 0.5 2 5rem;
   margin: 1rem;
   margin-top: 1.35rem;
 
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+a.bio-image:hover {
+  opacity: 0.8;
+}
+
+div.bio-portrait {
   background-position: 50% 10%;
   background-size: cover;
 }
@@ -153,7 +165,7 @@ div.bio-contact svg {
 }
 
 @media (min-width: 768px) {
-  div.info-group:nth-of-type(2n) > div.bio-portrait {
+  div.info-group:nth-of-type(2n) > .bio-image {
     order: 2;
   }
 }
@@ -171,8 +183,12 @@ div.bio-contact svg {
     flex: 1 0 auto;
   }
 
-  div.bio-portrait {
+  .bio-image {
     flex: 1 0 auto;
+    height: 8rem;
+  }
+
+  div.bio-portrait {
     height: 500px;
     height: 100vw;
   }
