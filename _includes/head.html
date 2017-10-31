@@ -42,5 +42,21 @@
 
   ga('create', 'UA-74072735-1', 'auto');
   ga('send', 'pageview');
+  
+  var trackOutboundLink = function(event) {
+    ga('send', 'event',  {
+      eventCategory: 'outbound',
+      eventAction: 'click',
+      eventLabel: event.currentTarget.href,
+      transport: 'beacon'
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var outbounds = document.getElementsByClassName("outbound");
+    for (var i = 0; i < outbounds.length; i++) {
+      outbounds[i].onclick = trackOutboundLink
+    }
+  });
   </script>
 </head>
