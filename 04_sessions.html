@@ -9,6 +9,8 @@ excerpt: SeedPlus Sessions are selective and focused talks on topics founders ca
   <h1>Sessions.</h1>
 </div>
 
+<p>SeedPlus Sessions are selective and focused talks on topics founders care about. Certain Sessions are demand-limited (marked with a &#x2606;&#xfe0e;) - <a href='mailto:hello@seedplus.com' class='outbound'>get in touch</a> and we'll help you get access.</p>
+
 {% assign sessions = site.sessions | sort: 'date' | reverse %}
 {% for session in sessions %}
 <div class='info-group js-session' js-session-date='{{ session.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
