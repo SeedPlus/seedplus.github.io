@@ -1,6 +1,7 @@
 sections:
   - tag: 'aiml'
-    image: '/images/sessions_aiml.jpg'
-
+    label: 'Artificial Intelligence/Machine Learning'
   - tag: 'growth'
-    image: '/images/sessions_growth.jpg'
+    label: 'Growth'
+  - tag: 'fintech'
+    label: 'Fintech'

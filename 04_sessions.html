@@ -5,25 +5,21 @@ permalink: /sessions/
 excerpt: SeedPlus Sessions are selective and focused talks on topics founders care about.
 ---
 
-{% for section in site.data.sessions.sections %}
-<div class='js-session-section'>
-  <div class='section-banner'>
-    <img src='{{ section.image }}' width='100%' />
-  </div>
+<div class='page-header'>
+  <h1>Sessions.</h1>
+</div>
 
-  {% assign sessions = site.sessions | where: 'tag', section.tag | sort: 'date' | reverse %}
-  {% for session in sessions %}
-  <div class='info-group js-session' js-session-date='{{ session.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
-    <div class='info-sidebar'>
-      <h2></h2>
-    </div>
-    <div class='info-item'>
-      <h4>{{ session.title }}: {{ session.date | date: "%A %b %d" }}</h4>
-      {{ session.output }}
-    </div>
+{% assign sessions = site.sessions | sort: 'date' | reverse %}
+{% for session in sessions %}
+<div class='info-group js-session' js-session-date='{{ session.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
+  <div class='info-sidebar'>
+    <h2></h2>
   </div>
-  {% endfor %}
-  
+  <div class='info-item'>
+    <h4>{{ session.title }}: {{ session.date | date: "%A %b %d" }}</h4>
+    <h5>{{ site.data.sessions.sections | where: 'tag', session.tag | first | map: 'label' }} {% if session.exclusive %}&#x2606;&#xfe0e;{% endif %}</h5>
+    {{ session.output }}
+  </div>
 </div>
 {% endfor %}
 
@@ -31,23 +27,20 @@ excerpt: SeedPlus Sessions are selective and focused talks on topics founders ca
 var now = Date.now()
 var grace_period = 72*60*60*1000; // Sessions are in "upcoming" for 12h after their stated date
 
-var sections = document.getElementsByClassName('js-session-section');
-for (var i = 0; i < sections.length; i++) {
-  var sessions = sections[i].getElementsByClassName('js-session');
+var sessions = document.getElementsByClassName('js-session');
 
-  // Upcoming (here, to make the page look more sensible (no headings) if JS is turned off)
-  if (sessions.length > 0) {
-    sessions[0].getElementsByTagName('h2')[0].innerText = 'Upcoming.'
-  }
+// Upcoming (here, to make the page look more sensible (no headings) if JS is turned off)
+if (sessions.length > 0) {
+  sessions[0].getElementsByTagName('h2')[0].innerText = 'Upcoming.'
+}
 
-  // Past (overwrites upcoming if all in the past)
-  for (var j = 0; j < sessions.length; j++) {
-    var session = sessions[j];
-    var sessionInPast = parseInt(session.getAttribute('js-session-date')) < now - grace_period;
-    if (sessionInPast) {
-      session.getElementsByTagName('h2')[0].innerText = 'Past.';
-      break;
-    }
+// Past (overwrites upcoming if all in the past)
+for (var j = 0; j < sessions.length; j++) {
+  var session = sessions[j];
+  var sessionInPast = parseInt(session.getAttribute('js-session-date')) < now - grace_period;
+  if (sessionInPast) {
+    session.getElementsByTagName('h2')[0].innerText = 'Past.';
+    break;
   }
 }
 </script>
