@@ -1,0 +1,109 @@
+
+$logo-height: 0.75 * 3rem;
+$logo-hamburger-height-difference: 1rem;
+$logo-bottom-padding: 1.5rem;
+
+#menu {
+  padding: 0;
+  margin: 0 (-0.5rem) $logo-bottom-padding (-0.5rem);
+
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#menu #hamburger {
+  display: none;
+}
+
+#menu > li {
+  flex: 1 0 auto;
+  margin: 0 0.5rem;
+
+  display: block;
+  text-align: right;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#menu > li:first-child {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  flex: 3 0 auto;
+}
+
+#menu a {
+  text-decoration: none;
+  @include border-underline(transparent);
+}
+
+#menu a.current {
+  @include border-underline($jungle-blue);
+}
+
+#menu a:hover {
+  @include border-underline($seedplus-gray);
+}
+
+#logo {
+  height: $logo-height;
+}
+
+@media (max-width: 768px) {
+  #menu:not(.expanded) li:not(:first-child) {
+    display: none;
+  }
+
+  #menu.expanded > li:first-child {
+    margin-bottom: $logo-bottom-padding;
+  }
+
+  #menu #hamburger {
+    & svg {
+      height: $logo-height - $logo-hamburger-height-difference;
+    }
+    display: inline;
+    fill: $seedplus-gray;
+    padding: ($vertical-page-margin + $logo-hamburger-height-difference) $horizontal-page-margin ($logo-bottom-padding + $underline-width) $horizontal-page-margin;
+    margin: (-$vertical-page-margin - $logo-hamburger-height-difference) (-$horizontal-page-margin) (-$logo-bottom-padding) 0;
+  }
+
+  #menu.expanded #hamburger {
+    fill: white;
+    background-color: $seedplus-gray;
+  }
+
+  #menu.expanded {
+    flex-flow: column;
+    align-items: stretch;
+    margin-bottom: 0;
+  }
+
+  #menu.expanded li:not(:first-child) {
+    &, & a, & a:hover, & a:visited, & a:active
+    {
+      color: white;
+    }
+
+    & a:hover {
+      @include border-underline(white);
+    }
+
+    background-color: $seedplus-gray;
+    text-align: left;
+    padding: 0.5rem calc(3rem + 1rem);
+    margin: 0 -3rem;
+  }
+
+  #menu.expanded li:last-child {
+    padding-bottom: 1.5rem;
+  }
+  #menu.expanded li:nth-child(2) {
+    padding-top: 1.5rem;
+  }
+}
