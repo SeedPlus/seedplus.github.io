@@ -4,6 +4,7 @@
 /* If these are changed, make sure to update theme colors in the header and the map on contact page */
 $seedplus-gray: #373535;
 $jungle-blue: #05568A;
+$lighter-gray: lighten($seedplus-gray, 50%);
 
 $vertical-page-margin: 2rem;
 $horizontal-page-margin: 3rem;
@@ -40,8 +41,13 @@ body {
   margin: 0;
 }
 
-a, a:hover, a:visited, a:active {
+a, a:visited {
   color: $seedplus-gray;
+  transition: color 0.1s ease-in-out;
+}
+
+a:hover, a:active {
+  color: $lighter-gray;
 }
 
 b {
@@ -260,35 +266,12 @@ h4 {
       font-weight: 800;
       text-transform: uppercase;
       color: white;
-      background-color: $seedplus-gray;
+      background-color: $lighter-gray;
       margin: 0 0.4+0.2rem 0 0.4rem;
       padding: 0.2rem 0;
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
-      box-shadow: 0.4rem 0 0 $seedplus-gray, -0.4rem 0 0 $seedplus-gray;
-    }
-  }
-}
-
-h5 {
-  & + subtitle {
-    margin: 0;
-    font-weight: 500;
-  }
-  & span.tag {
-    display: inline;
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: white;
-    background-color: $seedplus-gray;
-    margin: 0 0.4rem;
-    padding: 0.2rem 0;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-    box-shadow: 0.4rem 0 0 $seedplus-gray, -0.4rem 0 0 $seedplus-gray;
-    & + .tag {
-      margin-left: 0.4+0.2rem;
+      box-shadow: 0.4rem 0 0 $lighter-gray, -0.4rem 0 0 $lighter-gray;
     }
   }
 }
@@ -308,15 +291,12 @@ blockquote {
   font-style: italic;
   margin: 0 2rem;
   &::before {
-    font-family: 'Raleway', sans-serif;
-    font-style: normal;
-    content: '\275D\275E';
-    //color: white;
-    //text-shadow: 1px 0 0 $seedplus-gray, -1px 0 0 $seedplus-gray, 0 1px 0 $seedplus-gray, 0 -1px 0 $seedplus-gray;
-
     float: left;
-    font-size: 2rem;
-    margin: 0 1rem 0 0;
+    width: 2rem;
+    height: 2rem;
+    content: ' ';
+    background-image: url('images/quote.svg');
+    margin: 0.5rem 0.5rem 0.5rem 0;
   }
 }
 
