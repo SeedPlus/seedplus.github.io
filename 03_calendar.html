@@ -15,19 +15,35 @@ excerpt: SeedPlus Sessions are selective and focused talks on topics founders ca
     <h3>Sessions.</h3>
     <p>SeedPlus Sessions are selective and focused talks on topics founders care about. Certain Sessions are demand-limited (marked with a &#x2606;&#xfe0e;) - <a href='mailto:hello@seedplus.com' class='outbound'>get in touch</a> and we'll help you get access.</p>
   </div>
+  <div class='info-item'>
+    <h3>Clips.</h3>
+    <p>When SeedPlus, our portfolio, or our team members are in the news we keep a small memento here.</p>
+  </div>
 </div>
 
-{% assign sessions = site.sessions | sort: 'date' | reverse %}
-{% for session in sessions %}
-<div class='info-group js-session' js-session-date='{{ session.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
+{% assign events = site.sessions | concat: site.clips | sort: 'date' | reverse %}
+{% for event in events %}
+<div class='info-group js-session' js-session-date='{{ event.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
   <div class='info-sidebar'>
     <h2></h2>
   </div>
-  <div class='info-item'>
-    <h4>{{ session.title }}</h4>
-    <span class='subtitle'><span class='tag'>Session</span><span class='tag'>{{ site.data.sessions.sections | where: 'tag', session.tag | first | map: 'label' }}</span>  {{ session.date | date: "%A %b %d %Y" }} {% if session.exclusive %}&#x2606;&#xfe0e;{% endif %}</span>
-    {{ session.output }}
-  </div>
+  {% if event.collection == 'sessions' %}
+    {% assign session = event %}
+    <div class='info-item'>
+      <h4>{{ session.title }}</h4>
+      <span class='subtitle'><span class='tag'>Session</span><span class='tag'>{{ site.data.calendar.tags | where: 'tag', session.tag | first | map: 'label' }}</span>  {{ session.date | date: "%A %b %d %Y" }} {% if session.exclusive %}&#x2606;&#xfe0e;{% endif %}</span>
+      {{ session.output }}
+    </div>
+  {% elsif event.collection == 'clips' %}
+    {% assign clip = event %}
+    <div class='info-item'>
+      <h4>{{ clip.title }}</h4>
+      <span class='subtitle'><span class='tag'>Clip</span>
+      {% if clip.tag %}<span class='tag'>{{ site.data.events.tags | where: 'tag', session.tag | first | map: 'label' }}</span> {% endif %}
+      {{ clip.date | date: "%A %b %d %Y" }} {% if clip.outlet %} from {% if clip.link %}<a href='{{ clip.link }}'>{{ clip.outlet }}</a>{% else %} {{ clip.outlet }} {% endif %} {% endif %}</span>
+      {{ clip.output }}
+    </div>
+  {% endif %}
 </div>
 {% endfor %}
 

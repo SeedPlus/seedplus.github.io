@@ -26,6 +26,8 @@ whitelist:
 collections:
   sessions:
     output: false
+  clips:
+    output: false
 
 # Prose (prose.io) configuration (https://github.com/prose/prose/wiki/Prose-Configuration)
 prose:
