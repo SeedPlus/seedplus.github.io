@@ -45,24 +45,49 @@ prose:
       - name: tag
         field:
           element: select
-          label: Section
+          label: Tag
           options:
             - name: 'AI/ML'
               value: 'aiml'
             - name: 'Growth'
               value: 'growth'
+            - name: 'Fintech'
+              value: 'fintech'
+            - name: 'Project Alpha'
+              value: 'alpha'
+      - name: 'exclusive'
+        field:
+          element: checkbox
+          label: 'Is this an exclusive (password-protected) event?'
+          value: false
+    _clips:
+      - name: title
+        field:
+          element: text
+          label: Title of the clip (typically copied verbatim and edited for brevity)
+      - name: date
+        field:
+          element: text
+          label: Publishing date
+          value: CURRENT_DATETIME
+      - name: link
+        field:
+          element: text
+          label: Full URL to the original clip
+      - name: outlet
+        field:
+          element: text
+          label: Name of the outlet that published the clip
   siteurl: "http://www.seedplus.com"
+  media: "/images/upload"
   ignore:
     - /_data
     - /_layouts
     - /_includes
+    - /_sass
     - /images
     - .gitignore
-    - 01_about.html
-    - 02_team.html
-    - 03_contact.html
-    - 04_sessions.html
     - CNAME
     - _config.yml
     - index.html
-    - style.scss
+    - main.scss
