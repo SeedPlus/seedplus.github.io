@@ -37,10 +37,10 @@ excerpt: SeedPlus Sessions are selective and focused talks on topics founders ca
   {% elsif event.collection == 'clips' %}
     {% assign clip = event %}
     <div class='info-item'>
-      <h4>{{ clip.title }}</h4>
+      <h4><a href='{{ clip.link }}' class='outbound'>{{ clip.title }}</a></h4>
       <span class='subtitle'><span class='tag'>Clip</span>
       {% if clip.tag %}<span class='tag'>{{ site.data.events.tags | where: 'tag', session.tag | first | map: 'label' }}</span> {% endif %}
-      {{ clip.date | date: "%A %b %d %Y" }} {% if clip.outlet %} from {% if clip.link %}<a href='{{ clip.link }}'>{{ clip.outlet }}</a>{% else %} {{ clip.outlet }} {% endif %} {% endif %}</span>
+      {{ clip.date | date: "%A %b %d %Y" }} {% if clip.outlet %} from {% if clip.link %}<a href='{{ clip.link }}' class='outbound'>{{ clip.outlet }}</a>{% else %} {{ clip.outlet }} {% endif %} {% endif %}</span>
       {{ clip.output }}
     </div>
   {% endif %}
