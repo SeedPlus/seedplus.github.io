@@ -7,3 +7,13 @@ tags:
     label: 'Fintech'
   - tag: 'alpha'
     label: 'Project Alpha'
+# this is sort of temporary until the team members are a collection
+authors:
+  - tag: 'michael'
+    label: 'Michael Smith Jr'
+  - tag: 'tiang'
+    label: 'Tiang Lim Foo'
+  - tag: 'gabriel'
+    label: 'Gabriel Lundberg'
+  - tag: 'chirayu'
+    label: 'Chirayu Wadke'

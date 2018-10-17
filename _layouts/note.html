@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class='page-header'>
+  <h1>Notes.</h1>
+</div>
+
+<div class='info-group'>
+  {% if page.tag %}
+  <div class='info-sidebar'>
+    <h2>{{ site.data.calendar.tags | where: 'tag', page.tag | first | map: 'label' }}.</h2>
+  </div>
+  {% endif %}
+  <div class='info-item'>
+    <h4>{{ page.title }}</a></h4>
+    <span class='subtitle'>
+      {{ page.date | date: "%A %b %d %Y" }}
+      {% if page.author %} by {{ site.data.calendar.authors | where: 'tag', page.author | first | map: 'label' }}{% endif %}
+    </span>
+    {{ content }}
+  </div>
+</div>

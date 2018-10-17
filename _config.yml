@@ -28,6 +28,20 @@ collections:
     output: false
   clips:
     output: false
+  notes:
+    output: true
+    permalink: '/calendar/:title'
+
+defaults:
+  - scope:
+      path: ''
+    values:
+      excerpt_separator: <!--MAGIC_END_EXCERPT-->
+  - scope:
+      path: ''
+      type: 'notes'
+    values:
+      layout: note
 
 # Prose (prose.io) configuration (https://github.com/prose/prose/wiki/Prose-Configuration)
 prose:
@@ -78,6 +92,55 @@ prose:
         field:
           element: text
           label: Name of the outlet that published the clip
+      - name: tag
+        field:
+          element: select
+          label: Tag
+          options:
+            - name: 'AI/ML'
+              value: 'aiml'
+            - name: 'Growth'
+              value: 'growth'
+            - name: 'Fintech'
+              value: 'fintech'
+            - name: 'Project Alpha'
+              value: 'alpha'
+    _notes:
+      - name: title
+        field:
+          element: text
+          label: Note title (will be slugified for the URL)
+      - name: date
+        field:
+          element: text
+          label: Publishing date
+          value: CURRENT_DATETIME
+      - name: author
+        field:
+          element: select
+          label: Author
+          options:
+            - name: 'Michael Smith Jr'
+              value: 'michael'
+            - name: 'Tiang Lim Foo'
+              value: 'tiang'
+            - name: 'Gabriel Lundberg'
+              value: 'gabriel'
+            - name: 'Chirayu Wadke'
+              value: 'chirayu'
+      - name: tag
+        field:
+          element: select
+          label: Tag
+          options:
+            - name: 'AI/ML'
+              value: 'aiml'
+            - name: 'Growth'
+              value: 'growth'
+            - name: 'Fintech'
+              value: 'fintech'
+            - name: 'Project Alpha'
+              value: 'alpha'
   siteurl: "http://www.seedplus.com"
   media: "/images/upload"
   ignore:
