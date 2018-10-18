@@ -49,18 +49,18 @@ $logo-bottom-padding: 1.5rem;
   box-shadow: 0.5rem 0 0 white, -0.5rem 0 0 white;
 }
 
-#menu a.current {
-  //@include border-underline($jungle-blue);
-  color: white;
-  background-color: $seedplus-gray;
-  box-shadow: 0.5rem 0 0 $seedplus-gray, -0.5rem 0 0 $seedplus-gray;
-}
-
 #menu li:not(:first-child) a:hover {
   //@include border-underline($seedplus-gray);
   color: white;
   background-color: $jungle-blue;
   box-shadow: 0.5rem 0 0 $jungle-blue, -0.5rem 0 0 $jungle-blue;
+}
+
+#menu li:not(:first-child) a.current {
+  //@include border-underline($jungle-blue);
+  color: white;
+  background-color: $seedplus-gray;
+  box-shadow: 0.5rem 0 0 $seedplus-gray, -0.5rem 0 0 $seedplus-gray;
 }
 
 #logo {
