@@ -25,61 +25,124 @@ excerpt: SeedPlus Sessions are selective and focused talks on topics founders ca
   </div>
 </div>
 
-{% assign events = site.sessions | concat: site.clips | concat: site.notes | sort: 'date' | reverse %}
-{% for event in events %}
-<div class='info-group js-session' js-session-date='{{ event.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
+<div class='info-group' id='js-archive'>
   <div class='info-sidebar'>
-    <h2></h2>
+    <h2>Archive.</h2>
   </div>
-  {% if event.collection == 'sessions' %}
-    {% assign session = event %}
-    <div class='info-item'>
-      <h4>{{ session.title }}</h4>
-      <span class='subtitle'><span class='tag'>Session.</span><span class='tag'>{{ site.data.calendar.tags | where: 'tag', session.tag | first | map: 'label' }}.</span>  {{ session.date | date: "%A %b %d %Y" }} {% if session.exclusive %}&#x2606;&#xfe0e;{% endif %}</span>
-      {{ session.output }}
-    </div>
-  {% elsif event.collection == 'clips' %}
-    {% assign clip = event %}
-    <div class='info-item'>
-      <h4><a href='{{ clip.link }}' class='outbound'>{{ clip.title }}</a></h4>
-      <span class='subtitle'><span class='tag'>Clip.</span>
-      {% if clip.tag %}<span class='tag'>{{ site.data.calendar.tags | where: 'tag', clip.tag | first | map: 'label' }}.</span> {% endif %}
-      {{ clip.date | date: "%A %b %d %Y" }} {% if clip.outlet %} from {% if clip.link %}<a href='{{ clip.link }}' class='outbound'>{{ clip.outlet }}</a>{% else %} {{ clip.outlet }} {% endif %} {% endif %}</span>
-      {{ clip.output }}
-    </div>
-  {% elsif event.collection == 'notes' %}
-    {% assign note = event %}
-    <div class='info-item'>
-      <h4><a href='{{ note.url }}' class='outbound'>{{ note.title }}</a></h4>
-      <span class='subtitle'><span class='tag'>Note.</span>
-      {% if note.tag %}<span class='tag'>{{ site.data.calendar.tags | where: 'tag', note.tag | first | map: 'label' }}.</span> {% endif %}
-      {{ note.date | date: "%A %b %d %Y" }} {% if note.author %} by {{ site.data.calendar.authors | where: 'tag', note.author | first | map: 'label' }}{% endif %}</span>
-      {{ note.excerpt }}
 
+  <div class='info-item'>
+  {% assign events = site.sessions | concat: site.clips | concat: site.notes | sort: 'date' | reverse %}
+  {% for event in events %}
+    <div class='calendar-item js-calendar-item {{ event.date | date: "%Y" }}{% if forloop.index < 10 %} recent{% endif %}' js-event-date='{{ event.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
+
+    {% if event.collection == 'sessions' %}
+      {% assign session = event %}
+      <h4>{{ session.title }}</h4>
+      <span class='subtitle'>
+        <span class='tag'>Session.</span>
+        <span class='tag'>{{ site.data.calendar.tags | where: 'tag', session.tag | first | map: 'label' }}.</span>
+        {{ session.date | date: "%A %b %d %Y" }}
+        {% if session.exclusive %}&#x2606;&#xfe0e;{% endif %}
+      </span>
+      {{ session.output }}
+
+    {% elsif event.collection == 'clips' %}
+      {% assign clip = event %}
+      <h4><a href='{{ clip.link }}' class='outbound'>{{ clip.title }}</a></h4>
+      <span class='subtitle'>
+        <span class='tag'>Clip.</span>
+        {% if clip.tag %}<span class='tag'>{{ site.data.calendar.tags | where: 'tag', session.tag | first | map: 'label' }}.</span> {% endif %}
+        {{ clip.date | date: "%A %b %d %Y" }}
+        {% if clip.outlet %} from {% if clip.link %}<a href='{{ clip.link }}' class='outbound'>{{ clip.outlet }}</a>{% else %} {{ clip.outlet }} {% endif %} {% endif %}
+      </span>
+      {{ clip.output }}
+
+    {% elsif event.collection == 'notes' %}
+      {% assign note = event %}
+      <h4><a href='{{ note.url }}' class='outbound'>{{ note.title }}</a></h4>
+      <span class='subtitle'>
+        <span class='tag'>Note.</span>
+        {% if note.tag %}<span class='tag'>{{ site.data.calendar.tags | where: 'tag', note.tag | first | map: 'label' }}.</span> {% endif %}
+        {{ note.date | date: "%A %b %d %Y" }}
+        {% if note.author %} by {{ site.data.calendar.authors | where: 'tag', note.author | first | map: 'label' }}{% endif %}
+      </span>
+      {{ note.excerpt }}
       <p><a href='{{ note.url }}'>Read the full note</a></p>
+    {% endif %}
     </div>
-  {% endif %}
+  {% endfor %}
+  </div>
 </div>
-{% endfor %}
 
 <script>
 var now = Date.now()
-var grace_period = 72*60*60*1000; // Sessions are in "upcoming" for 12h after their stated date
+var grace_period = 7*24*60*60*1000; // Items are in "current" for 7 days after the publishing/event date
 
-var sessions = document.getElementsByClassName('js-session');
+var archiveNode = document.getElementById('js-archive');
+var archiveTitleNode = archiveNode.getElementsByClassName('info-sidebar')[0];
+//archiveTitleNode.innerHTML = "<h2>Archive.</h2><ul class='toggle'><li toggleClass='recent'>recent</li>{% for year in site.data.calendar.archive.years %}<li toggleClass='{{ year }}'>{{ year }}</li>{% endfor %}</ul>";
 
-// Upcoming (here, to make the page look more sensible (no headings) if JS is turned off)
-if (sessions.length > 0) {
-  sessions[0].getElementsByTagName('h2')[0].innerText = 'Upcoming.'
-}
-
-// Past (overwrites upcoming if all in the past)
-for (var j = 0; j < sessions.length; j++) {
-  var session = sessions[j];
-  var sessionInPast = parseInt(session.getAttribute('js-session-date')) < now - grace_period;
-  if (sessionInPast) {
-    session.getElementsByTagName('h2')[0].innerText = 'Archive.';
+var items = document.getElementsByClassName('js-calendar-item');
+var currentEventListNode = null;
+for (var j = 0; j < items.length; j++) {
+  var event = items[j];
+  var isCurrent = parseInt(event.getAttribute('js-event-date')) > now - grace_period;
+  if (isCurrent) {
+    if (currentEventListNode === null) {
+      var currentNode = archiveNode.cloneNode(false);
+      currentNode = archiveNode.parentNode.insertBefore(currentNode, archiveNode);
+      var currentTitleNode = currentNode.insertBefore(archiveTitleNode.cloneNode(false), null);
+      currentTitleNode.innerHTML = "<h2>Current.</h2>";
+      currentEventListNode = currentNode.insertBefore(archiveNode.getElementsByClassName('info-item')[0].cloneNode(false), null);
+    }
+    event.classList.remove('recent'{% for year in site.data.calendar.archive.years %}, '{{ year }}'{% endfor %});
+    event = currentEventListNode.insertBefore(event, null);
+  } else {
     break;
   }
 }
 </script>
+
+<!--script>
+
+var groups = document.querySelectorAll('.toggle');
+
+function activateItemEvent(event) {
+  console.log('clicked', event)
+  activateItem(event.currentTarget.parentNode, event.currentTarget);
+}
+
+function activateItem(group, item) {
+  var items = group.querySelectorAll('li');
+  // Restore all items to base case
+  for (var i = 0; i < items.length; i++) {
+    items[i].classList.remove('active');
+    var class_ = items[i].getAttribute('toggleClass');
+    var pages = document.getElementsByClassName(class_);
+    console.log(class_, pages);
+    for (var j = 0; j < pages.length; j++) {
+      pages[j].classList.add('hidden');
+    }
+  }
+  // Show active items
+  var pages = document.getElementsByClassName(item.getAttribute('toggleClass'));
+  console.log(class_, pages);
+  for (var j = 0; j < pages.length; j++) {
+    pages[j].classList.remove('hidden');
+  }
+  item.classList.add('active');
+}
+
+for (var i = 0; i < groups.length; i++) {
+  var group = groups[i];
+  group.classList.remove('hidden');
+
+  var items = group.querySelectorAll('li');
+  for (var j = 0; j < items.length; j++) {
+    items[j].addEventListener('click', activateItemEvent);
+  }
+
+  activateItem(group, items[0]);
+}
+
+</script-->
