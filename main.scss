@@ -139,8 +139,11 @@ div.info-sidebar {
   background-repeat: no-repeat;
 }
 
-a.bio-image:hover {
-  opacity: 0.8;
+a.bio-image {
+  transition: opacity 0.1s ease-in-out;
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
 div.bio-portrait {
