@@ -232,6 +232,7 @@ h2 {
     color: $lighter-gray;
     margin: 0.4+0.3rem 0.5rem 0.4+0.3rem 0.5rem;
     list-style: none;
+    cursor: pointer;
     padding: 0;
     & > li {
       transition: color 0.1s ease-in-out;
@@ -312,7 +313,7 @@ p {
   }
 }
 
-.calendar-item + .calendar-item {
+.calendar-item:not(.hidden) + .calendar-item {
   margin-top: 2rem;
 }
 

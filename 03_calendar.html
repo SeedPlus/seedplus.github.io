@@ -33,7 +33,7 @@ excerpt: SeedPlus Sessions are selective and focused talks on topics founders ca
   <div class='info-item'>
   {% assign events = site.sessions | concat: site.clips | concat: site.notes | sort: 'date' | reverse %}
   {% for event in events %}
-    <div class='calendar-item js-calendar-item {{ event.date | date: "%Y" }}{% if forloop.index < 10 %} recent{% endif %}' js-event-date='{{ event.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
+    <div class='calendar-item js-calendar-item {% if forloop.index < 10 %} recent {% else %} {{ event.date | date: "%Y" }}{% endif %}' js-event-date='{{ event.date | date: "%s000" }}'><!-- How to multiply by 1000 without parsing a number -_- -->
 
     {% if event.collection == 'sessions' %}
       {% assign session = event %}
@@ -80,7 +80,7 @@ var grace_period = 7*24*60*60*1000; // Items are in "current" for 7 days after t
 
 var archiveNode = document.getElementById('js-archive');
 var archiveTitleNode = archiveNode.getElementsByClassName('info-sidebar')[0];
-//archiveTitleNode.innerHTML = "<h2>Archive.</h2><ul class='toggle'><li toggleClass='recent'>recent</li>{% for year in site.data.calendar.archive.years %}<li toggleClass='{{ year }}'>{{ year }}</li>{% endfor %}</ul>";
+archiveTitleNode.innerHTML = "<h2>Archive.</h2><ul class='toggle'><li toggleClass='recent'>recent</li>{% for year in site.data.calendar.archive.years %}<li toggleClass='{{ year }}'>{{ year }}</li>{% endfor %}</ul>";
 
 var items = document.getElementsByClassName('js-calendar-item');
 var currentEventListNode = null;
@@ -103,8 +103,7 @@ for (var j = 0; j < items.length; j++) {
 }
 </script>
 
-<!--script>
-
+<script>
 var groups = document.querySelectorAll('.toggle');
 
 function activateItemEvent(event) {
@@ -145,4 +144,4 @@ for (var i = 0; i < groups.length; i++) {
   activateItem(group, items[0]);
 }
 
-</script-->
+</script>
