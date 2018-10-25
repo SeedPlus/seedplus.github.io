@@ -1,6 +1,5 @@
 ---
 date: '2018-10-25 15:12 +0800'
-tag: aiml
 published: false
 title: EngageRocket aims to help HR departments make data-informed decisions
 link: 'https://sg.news.yahoo.com/engagerocket-aims-help-hr-departments-152206148.html'
