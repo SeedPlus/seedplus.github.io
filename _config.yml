@@ -97,6 +97,8 @@ prose:
           element: select
           label: Tag
           options:
+            - name: 'None'
+              value: ''
             - name: 'AI/ML'
               value: 'aiml'
             - name: 'Growth'
