@@ -6,4 +6,4 @@ link: >-
   https://blog.travelstop.com/what-we-shipped-multi-language-book-for-others-and-more/
 outlet: Travelstop
 ---
-Hit the language toggle for Simplfied Chinese, Traditional Chinese, Indonesian, Thai or Vietnamese. Does an assitant book your travel? They've got that handled as well.
+Hit the language toggle for Simplfied Chinese, Traditional Chinese, Indonesian, Thai or Vietnamese. Does an assistant book your travel? They've got that handled as well.
