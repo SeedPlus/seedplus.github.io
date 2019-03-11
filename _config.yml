@@ -145,6 +145,23 @@ prose:
               value: 'fintech'
             - name: 'Project Alpha'
               value: 'alpha'
+    _portfolio:
+      - name: title
+        field:
+          element: text
+          label: Company name
+      - name: link
+        field:
+          element: text
+          label: URL to the company website
+      - name: logo
+        field:
+          element: text
+          label: Logotype/wordmark filename in the assets/portfolio folder
+      - name: blurb
+        field:
+          element: text
+          label: One-line blurb
   siteurl: "http://www.seedplus.com"
   media: "/images/upload"
   ignore:
