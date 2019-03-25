@@ -8,4 +8,4 @@ outlet: YourStory
 ---
 YourStory discusses Kalyan's first B2B Investment
 
-B2B industrial goods e-commerce marketplace Moglix announced today that it had onboarded Flipkart CEO Kalyan Krishnamurthy as an investor in his personal capacity.
+> B2B industrial goods e-commerce marketplace Moglix announced today that it had onboarded Flipkart CEO Kalyan Krishnamurthy as an investor in his personal capacity.
