@@ -2,7 +2,7 @@
 date: '2019-05-10 13:00 +0800'
 author: michael
 tag: alpha
-published: false
+published: true
 title: Project Alpha 2019 is live!
 ---
 Our first city is Manila and the [registration link](https://alpha.seedplus.com/#manila) is open. Sign up soon!
