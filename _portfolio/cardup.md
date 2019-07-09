@@ -2,9 +2,9 @@
 title: CardUp
 link: https://cardup.co/
 logo: cardup.svg
-blurb: Online card payments platform for cash management
+blurb: Big payments, made rewarding
 ---
 
-CardUp enables any payment made by bank transfer to be shifted to a credit card, regardless of whether the recipients accept credit cards. Both businesses and consumers gain instant access to interest-free credit of up to 55 days, improve their cash flow and earn reward points on big payments such as payroll, supplier invoices, rent and taxes, while digitising processes at the same time.
+CardUp is a credit card enablement platform, which enables the payment or collection of big expenses using credit card, in places where cards are not accepted today. Examples of payments include rent, tax, invoices, payroll and more, which are still paid by cash, cheque or bank transfer.
 
-CardUp accepts all major credit cards and partners with leading institutions including United Overseas Bank, Citibank, Bank of China and Mastercard.
+With CardUp, individuals and businesses can now shift these big payments to their existing credit cards. This provides an unparalleled opportunity to earn credit card rewards, access interest-free credit and digitise payments - making big payments rewarding.
