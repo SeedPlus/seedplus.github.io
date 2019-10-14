@@ -1,8 +1,8 @@
 ---
-title: Porter
-link: https://porter.id/
-logo: Porter-Logo-Full.svg
-blurb: Distributed, full-service B2B logistics platform in Indonesia
+title: Rukita
+link: https://www.rukita.co/
+logo: rukita.svg
+blurb: Make Living Better for our generation
 ---
 
-Porter is a tech-enabled distributed, full-service B2B logistics platform that provides a cost-effective solution. Porter helps businesses make sense of the complexity of logistics processes, giving them a tremendous competitive advantage in today’s market that demand efficiency and speed.
+Rukita is an experience-focused co-living brand with a mission to make living better for urbanites in Asia’s fast-growing emerging economies, starting in Indonesia.
